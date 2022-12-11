@@ -13,4 +13,4 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-CMD [ "python", "log_service.py", "--input_path=/logs/processed_images", "--api_path=http://192.168.2.10:3000/api/log"]
+CMD [ "python", "log_service.py", "--input_path=/logs/processed_images", "--api_path=http://192.168.2.10:8081/log"]

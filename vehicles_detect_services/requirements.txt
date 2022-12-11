@@ -1,0 +1,10 @@
+certifi==2022.12.7
+charset-normalizer==2.1.1
+colorzero==2.0
+gpiozero==1.6.2
+idna==3.4
+numpy==1.23.5
+opencv-python==4.6.0.66
+pigpio==1.78
+tflite-runtime==2.11.0
+urllib3==1.26.13

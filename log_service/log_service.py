@@ -29,7 +29,7 @@ def send_log_to_server(api_path, data, image):
     else:
         r = requests.post(api_path, json = data)
     
-    return (r is not None and r.status_code == 201)
+    return (r is not None and r.status_code == 200)
         
 
 
