@@ -3,7 +3,7 @@
 
 ### Build the docker image
 ```
-docker build --tag vehicles-detect-service vehicles-detect-service/
+docker build --tag vehicles-detect-service vehicles_detect_services/
 docker build --tag vehicles-log-service log-service/
 ```
 
