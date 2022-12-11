@@ -4,7 +4,7 @@
 ### Build the docker image
 ```
 docker build --tag vehicles-detect-service vehicles-detect-service/
-docker build --tag vehicles-log-service vehicles-log-service/
+docker build --tag vehicles-log-service log-service/
 ```
 
 ### Create a shared volumn for log files
