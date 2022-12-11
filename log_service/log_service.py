@@ -21,13 +21,17 @@ input_path = args.input_path
 # Get path to current working directory
 CWD_PATH = os.getcwd()
 
-def send_log_to_server(api_path, data, image):    
-    
-    if image is not None:
+def send_log_to_server(api_path, data, image):
+    isExist = os.path.exists(image)
+    if isExist:
         files = {'media': open(image, 'rb')}
-        requests.post(api_path, json = data, files=files)
+        r = requests.post(api_path, json = data, files=files)
     else:
-        requests.post(api_path, json = data)
+        r = requests.post(api_path, json = data)
+    
+    return (r is not None and r.status_code == 201)
+        
+
 
 try:
     print("Progam started")
@@ -53,15 +57,17 @@ try:
                     image_path = str(folder) + "/" + str(os.path.splitext(file)[0]) + ".jpg"
                     with open(log_path) as log:
                         data = log.readline()
-                        send_log_to_server(api_path, data, image_path)
-                    os.remove(log_path)
-                    os.remove(image_path)
+                        result = send_log_to_server(api_path, data, image_path)
+                        
+                        if result:
+                            os.remove(log_path)
+                            os.remove(image_path)
                                  
                     
 except Exception as e:
     e = sys.exc_info()
     error_Msg = f"{type(e)}:{e[1]}"
     print(error_Msg)
-                    
+
 finally:
     pass
