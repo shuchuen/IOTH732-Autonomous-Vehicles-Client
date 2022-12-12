@@ -62,6 +62,8 @@ try:
                         if result:
                             os.remove(log_path)
                             os.remove(image_path)
+                        else:
+                          print("Cannot connect with the API")  
                                  
                     
 except Exception as e:
