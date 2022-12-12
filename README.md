@@ -17,3 +17,4 @@ docker volume create --driver local -o o=bind -o type=none -o device=~/logs Vehi
 docker run -it --rm --device="/dev/video0:/dev/video0" -v VehicleVolume:/logs vehicles-detect-service
 docker run -it --rm -v VehicleVolume:/logs vehicles-log-service
 ```
+ 
