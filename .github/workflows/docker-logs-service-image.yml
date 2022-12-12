@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file log_service/Dockerfile --tag my-image-name:log-service
+      run: docker build --tag vehicles-log-service log_service/
