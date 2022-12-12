@@ -3,8 +3,12 @@
 
 ### Build the docker image
 ```
-docker build --tag vehicles-detect-service vehicles_detect_services/
-docker build --tag vehicles-log-service log_service/
+docker build --tag vehicles-detect-service services/vehicles_detect_service/
+docker build --tag vehicles-log-service services/log_service/
+```
+or
+```
+docker-compose up
 ```
 
 ### Create a shared volumn for log files

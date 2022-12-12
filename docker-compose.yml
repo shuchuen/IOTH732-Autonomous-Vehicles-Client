@@ -1,0 +1,48 @@
+version: "3.6"
+services:
+  log-service:
+    command:
+      - "python"
+      - "log_service.py"
+      - "--input_path=/logs/processed_images"
+      - "--api_path=http://192.168.2.10:8081/log"
+    container_name: "log-service"
+    environment:
+      - "PATH=/opt/.vehicles-client/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "VIRTUAL_ENV=/opt/.vehicles-client"
+    image: "vehicles-log-service"
+    ipc: "private"
+    logging:
+      driver: "json-file"
+      options: {}
+    stdin_open: true
+    tty: true
+    volumes:
+      - "VehicleVolume:/logs"
+    working_dir: "/app"
+  detect-service:
+    command:
+      - "python"
+      - "vehicles_detect.py"
+      - "--modeldir=TFLite_model_bbd"
+      - "--output_path=/logs/processed_images"
+      - "--vin=auto-car-1"
+    container_name: "detect-service"
+    devices:
+      - "/dev/video0:/dev/video0"
+    environment:
+      - "PATH=/opt/.vehicles-client/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      - "VIRTUAL_ENV=/opt/.vehicles-client"
+    image: "vehicles-detect-service"
+    ipc: "private"
+    logging:
+      driver: "json-file"
+      options: {}
+    stdin_open: true
+    tty: true
+    volumes:
+      - "VehicleVolume:/logs"
+    working_dir: "/app"
+volumes:
+  VehicleVolume:
+    external: true
