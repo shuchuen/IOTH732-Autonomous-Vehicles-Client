@@ -1,0 +1,22 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the detect-service image
+      run: docker build --tag vehicles-detect-service services/vehicles_detect_service/
+    - uses: actions/checkout@v3
+    - name: Build the log-service image
+      run: docker build --tag vehicles-log-service services/log_service/
+      
